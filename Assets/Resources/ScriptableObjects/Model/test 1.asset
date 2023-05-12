@@ -13,7 +13,10 @@ MonoBehaviour:
   m_Name: test 1
   m_EditorClassIdentifier: 
   worldGameObj: {fileID: 0}
+  type: 0
   image: {fileID: 0}
-  itemName: test
-  price: 555
+  itemName: test1
+  componentPrice: 0
   defaultColour: {r: 0, g: 0, b: 0, a: 0}
+  colourPrice: 0
+  changedColour: {r: 0, g: 0, b: 0, a: 0}

@@ -7,8 +7,11 @@ using UnityEngine.UI;
 public class VehiclePropertyScriptableObject : ScriptableObject
 {
     public GameObject worldGameObj;
+    public VehicleComponent type;
     public Image image;
     public string itemName;
-    public float price;
+    public float componentPrice;
     public Color defaultColour;
+    public float colourPrice;
+    public Color changedColour;
 }

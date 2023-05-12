@@ -6,7 +6,7 @@ using TMPro;
 
 public class InventoryAsset : MonoBehaviour
 {
-    public VehiclePropertyScriptableObject data {private get; set; }
+    public VehiclePropertyScriptableObject data;
 
     [SerializeField]
     TextMeshProUGUI uiPrice;
@@ -15,14 +15,12 @@ public class InventoryAsset : MonoBehaviour
     [SerializeField]
     Image uiImage;
 
-    float price;
-    Color colour;
+    private float price;
 
     void Start(){
-        price = data.price;
-        colour = data.defaultColour;
+        price = data.componentPrice;
         if (data.image != null){uiImage = data.image;}
         uiItemName.text = data.itemName;
-        uiPrice.text = data.price.ToString();
+        uiPrice.text = data.componentPrice.ToString();
     }
 }
