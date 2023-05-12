@@ -5,8 +5,10 @@ using UnityEngine.UI;
 
 public class RevealPanel : MonoBehaviour
 {
-    public GameObject parent;
-    public GameObject hiddenPanel;
+    [SerializeField]
+    GameObject parent;
+    [SerializeField]
+    GameObject hiddenPanel;
 
     RectTransform parentRect;
     RectTransform hiddenPanelRect;
