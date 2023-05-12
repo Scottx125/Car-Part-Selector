@@ -3,10 +3,14 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
+using System;
 
 public class InventoryAsset : MonoBehaviour
 {
-    public VehiclePropertyScriptableObject data;
+    public static event Action<float, float, VehicleComponent> OnComponenetSelectionEvent;
+
+    [HideInInspector]
+    public VehicleComponentProperties data;
 
     [SerializeField]
     TextMeshProUGUI uiPrice;
@@ -16,11 +20,20 @@ public class InventoryAsset : MonoBehaviour
     Image uiImage;
 
     private float price;
+    private float colourPrice;
+    private VehicleComponent componentType;
 
     void Start(){
         price = data.componentPrice;
-        if (data.image != null){uiImage = data.image;}
-        uiItemName.text = data.itemName;
+        colourPrice = data.colourPrice;
         uiPrice.text = data.componentPrice.ToString();
+        uiImage = data.image;
+        uiItemName.text = data.itemName;
+        componentType = data.type;
+    }
+
+    void OnClick()
+    {
+        OnComponenetSelectionEvent(price,colourPrice,componentType);
     }
 }

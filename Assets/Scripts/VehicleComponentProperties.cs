@@ -4,7 +4,7 @@ using UnityEngine;
 using UnityEngine.UI;
 
 [CreateAssetMenu(fileName = "VehicleProperty", menuName = "ScriptableObjects/VehicleProperty", order = 1)]
-public class VehiclePropertyScriptableObject : ScriptableObject
+public class VehicleComponentProperties : ScriptableObject
 {
     public GameObject worldGameObj;
     public VehicleComponent type;
@@ -13,5 +13,4 @@ public class VehiclePropertyScriptableObject : ScriptableObject
     public float componentPrice;
     public Color defaultColour;
     public float colourPrice;
-    public Color changedColour;
 }

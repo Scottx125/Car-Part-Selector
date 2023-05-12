@@ -9,11 +9,9 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 5f3c73a06b334084fa0d2df2307ec082, type: 3}
-  m_Name: test1
+  m_Script: {fileID: 11500000, guid: 181ac49c82552d94aba2f8a164feb41c, type: 3}
+  m_Name: ComponentColourProperties
   m_EditorClassIdentifier: 
-  worldGameObj: {fileID: 0}
+  colour: {r: 0, g: 0, b: 0, a: 0}
+  priceMod: 1
   image: {fileID: 0}
-  itemName: sssssssssss
-  price: 111
-  defaultColour: {r: 0, g: 0.7433529, b: 1, a: 0}

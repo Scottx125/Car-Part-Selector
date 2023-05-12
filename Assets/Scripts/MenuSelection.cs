@@ -3,43 +3,67 @@ using System.Collections.Generic;
 using UnityEngine;
 using System;
 
-public class NewBehaviourScript : MonoBehaviour
+public class MenuSelection : MonoBehaviour
 {
-    public static event Action<InventoryAsset> OnComponenetSelectionEvent;
-    public static event Action OnColourUpdateEvent;
+    private struct PriceType
+    {
+        public float price;
+        public VehicleComponent type;
+        public float colourPrice;
+
+        public PriceType(float price, VehicleComponent type, float colourPrice){
+            this.price = price;
+            this.type = type;
+            this.colourPrice = colourPrice;
+        }
+    }
+    
+    public static event Action<float> OnNewSelection;
 
     float totalPrice;
-    Dictionary<VehicleComponent,InventoryAsset> selectionDict;
-    InventoryAsset pendingSelection;
+    Dictionary<VehicleComponent,PriceType> selectionDict;
+    PriceType pendingSelection;
 
-    void Start()
-    {
-        OnComponenetSelectionEvent += OnComponentSelection;
-        OnColourUpdateEvent += OnColourUpdate;
+    void OnEnabled(){
+        InventoryAsset.OnComponenetSelectionEvent += OnComponentSelection;
+        ColourAsset.OnColourUpdateEvent += OnColourUpdate;
     }
+    void OnDisabled(){
+        InventoryAsset.OnComponenetSelectionEvent -= OnComponentSelection;
+        ColourAsset.OnColourUpdateEvent -= OnColourUpdate;
+    }
+    void Start()
+    { 
 
+    }
+    // Update prices.
     void UpdateSelection()
     {
         totalPrice = 0;
-        foreach(InventoryAsset item in selectionDict.Values){
-            totalPrice += item.data.componentPrice;
-            totalPrice += item.data.colourPrice;
+        foreach(PriceType item in selectionDict.Values){
+            totalPrice += item.price;
+            totalPrice += item.colourPrice;
         }
     }
-
-    void OnComponentSelection(InventoryAsset iasset)
+    // Checks to see if existing type exists in dict. If not it adds it. Else it overrites it.
+    void OnComponentSelection(float price, float colourPrice, VehicleComponent type)
     {
-        pendingSelection = iasset;
-        if (selectionDict.ContainsKey(pendingSelection.data.type)){
-            selectionDict[pendingSelection.data.type] = pendingSelection;
-        } else {selectionDict.Add(pendingSelection.data.type, pendingSelection);}
+        pendingSelection.price = price;
+        pendingSelection.colourPrice = colourPrice;
+        pendingSelection.type = type;
+        if (selectionDict.ContainsKey(pendingSelection.type)){
+            selectionDict[pendingSelection.type] = pendingSelection;
+        } else {selectionDict.Add(pendingSelection.type, pendingSelection);}
+        OnNewSelection(colourPrice);
         UpdateSelection();
     }
-
-    void OnColourUpdate()
+    // Updates the colour price of the current pending selection.
+    void OnColourUpdate(float colourPrice)
     {
-        // change colour of selection.
-        // Update the price.
+        pendingSelection.colourPrice = colourPrice;
+        selectionDict[pendingSelection.type] = pendingSelection;
         UpdateSelection();
     }
 }
+
+
