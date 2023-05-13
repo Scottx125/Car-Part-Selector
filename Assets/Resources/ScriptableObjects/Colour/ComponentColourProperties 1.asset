@@ -10,8 +10,10 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 181ac49c82552d94aba2f8a164feb41c, type: 3}
-  m_Name: ComponentColourProperties
+  m_Name: ComponentColourProperties 1
   m_EditorClassIdentifier: 
+  typePriceModList:
+  - type: 0
+    priceMod: 0
   colour: {r: 0, g: 0, b: 0, a: 0}
-  priceMod: 1
   image: {fileID: 0}

@@ -9,16 +9,16 @@ public class Inventory : MonoBehaviour
     [SerializeField]
     VehicleComponent type; 
     
-    VehicleComponentProperties[] vehicleProperty;
-    List<GameObject> inventoryGameObjArray = new List<GameObject>();
+    VehicleComponentProperties[] vehiclePropertyArray;
+    List<GameObject> inventoryGameObjList = new List<GameObject>();
 
     void Awake()
     {
-        vehicleProperty = Resources.LoadAll<VehicleComponentProperties>("ScriptableObjects/" + type.ToString());
-        foreach (VehicleComponentProperties item in vehicleProperty){
+        vehiclePropertyArray = Resources.LoadAll<VehicleComponentProperties>("ScriptableObjects/" + type.ToString());
+        foreach (VehicleComponentProperties item in vehiclePropertyArray){
                 GameObject instance = Instantiate(inventoryGameObj, transform);
                 instance.GetComponent<InventoryAsset>().data = item;
-                inventoryGameObjArray.Add(instance);
+                inventoryGameObjList.Add(instance);
         }
     }
 }

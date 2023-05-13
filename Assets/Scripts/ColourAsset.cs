@@ -20,19 +20,17 @@ public class ColourAsset : MonoBehaviour
     private float priceMod;
     private Color colour;
     private float price;
-
-    void OnEnabled(){
-        MenuSelection.OnNewSelection += OnNewSelection;
-    }
+    private VehicleComponent type;
 
     void Start(){
-        priceMod = data.priceMod;
+        //priceMod = data.priceMod;
         colour = data.colour;
         uiImage = data.image;
     }
 
-    void OnNewSelection(float colourPrice)
-    {
+    public void UpdateStats(float colourPrice, VehicleComponent type){
+        int index = data.typePriceModList.FindIndex(x => x.type == type);
+        priceMod = data.typePriceModList[index].priceMod;
         price = colourPrice * priceMod;
     }
 
