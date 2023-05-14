@@ -29,17 +29,19 @@ public class MenuSelection : MonoBehaviour
     public static event Action<float, Color, VehicleComponent> OnNewSelection;
 
     float totalPrice;
-    Dictionary<VehicleComponent,PriceType3D> selectionDict;
-    PriceType3D currentSelection;
+    Dictionary<VehicleComponent,PriceType3D> selectionDict = new Dictionary<VehicleComponent, PriceType3D>();
+    PriceType3D currentSelection = new PriceType3D(0f,VehicleComponent.None,0f,null,Color.clear);
 
-    void OnEnabled(){
+    void OnEnable(){
         InventoryAsset.OnComponenetSelectionEvent += OnComponentSelection;
         ColourAsset.OnColourUpdateEvent += OnColourUpdate;
     }
-    void OnDisabled(){
+
+    void OnDisable(){
         InventoryAsset.OnComponenetSelectionEvent -= OnComponentSelection;
         ColourAsset.OnColourUpdateEvent -= OnColourUpdate;
     }
+
     // Update prices.
     void UpdateSelection()
     {
@@ -54,7 +56,7 @@ public class MenuSelection : MonoBehaviour
     void OnComponentSelection(float price, float colourPrice, VehicleComponent type, GameObject prefab, Color baseColour)
     {
         if (currentSelection.type == type){
-            currentSelection.prefab.GetComponent<Material>().color = currentSelection.baseColour;
+            currentSelection.prefab.GetComponent<Renderer>().material.color = currentSelection.baseColour;
             ActivateDeactevateObj();
         }
 
@@ -63,6 +65,7 @@ public class MenuSelection : MonoBehaviour
         currentSelection.type = type;
         currentSelection.prefab = prefab;
         currentSelection.baseColour = baseColour;
+        Debug.Log(type);
 
         if (selectionDict.ContainsKey(type)){
             selectionDict[currentSelection.type] = currentSelection;
@@ -76,7 +79,7 @@ public class MenuSelection : MonoBehaviour
     void OnColourUpdate(float colourPrice, Color colour)
     {
         currentSelection.colourPrice = colourPrice;
-        currentSelection.prefab.GetComponent<Material>().color = colour;
+        currentSelection.prefab.GetComponent<Renderer>().material.color = colour;
         selectionDict[currentSelection.type] = currentSelection;
         UpdateSelection();
     }

@@ -1,0 +1,21 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5f3c73a06b334084fa0d2df2307ec082, type: 3}
+  m_Name: Audii Sport Quattroo S1
+  m_EditorClassIdentifier: 
+  worldGameObj: {fileID: 5534455803192352782, guid: fcfadea744405c74491967e0aa729781, type: 3}
+  type: 1
+  image: {fileID: 21300000, guid: 640406d247f7f2640b1a3b803582d0b3, type: 3}
+  itemName: Audii Sport Quattroo S1
+  componentPrice: 5000
+  defaultColour: {r: 0.77647066, g: 0.8196079, b: 0.8941177, a: 1}
+  colourPrice: 300

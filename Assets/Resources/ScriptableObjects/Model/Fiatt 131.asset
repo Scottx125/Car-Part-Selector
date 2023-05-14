@@ -1,0 +1,21 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5f3c73a06b334084fa0d2df2307ec082, type: 3}
+  m_Name: Fiatt 131
+  m_EditorClassIdentifier: 
+  worldGameObj: {fileID: 5404457258573965379, guid: 0514ec86fc657924c9e63a3ac3229490, type: 3}
+  type: 1
+  image: {fileID: 21300000, guid: 4b1070683606c07489c9b10187b38b04, type: 3}
+  itemName: Fiatt 131
+  componentPrice: 3500
+  defaultColour: {r: 0.6627451, g: 0.23529413, b: 0.21176472, a: 1}
+  colourPrice: 300

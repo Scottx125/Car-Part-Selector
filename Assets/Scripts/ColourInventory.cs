@@ -11,10 +11,10 @@ public class ColourInventory : MonoBehaviour
     ComponentColourProperties[] componentColourArray;
     List<GameObject> colourInventoryGameObjList = new List<GameObject>();
 
-    void OnEnabled(){
+    void OnEnable(){
         MenuSelection.OnNewSelection += UpdateColourAssets;
     }
-    void OnDisabled(){
+    void OnDisable(){
         MenuSelection.OnNewSelection += UpdateColourAssets;
     }
 

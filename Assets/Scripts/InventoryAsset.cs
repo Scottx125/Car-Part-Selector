@@ -36,7 +36,8 @@ public class InventoryAsset : MonoBehaviour
         baseColour = data.defaultColour;
 
         prefab = Instantiate(prefab);
-        prefab.GetComponent<Material>().color = baseColour;
+        prefab.GetComponent<Renderer>().material.color = baseColour;
+        prefab.SetActive(false);
     }
 
     public void OnClick()

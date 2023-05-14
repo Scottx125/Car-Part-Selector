@@ -32,6 +32,7 @@ public class ColourAsset : MonoBehaviour
     public void DefaultColourUpdate(Color baseColour)
     {
         colour = baseColour;
+        uiImage.color = baseColour;
     }
 
     public void UpdateStats(float colourPrice, VehicleComponent type){
@@ -42,6 +43,7 @@ public class ColourAsset : MonoBehaviour
     }
 
     public void OnClick(){
+        if (price == 0){return;}
         OnColourUpdateEvent(price, colour);
     }
 
