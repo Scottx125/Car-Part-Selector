@@ -27,8 +27,10 @@ public class MenuSelection : MonoBehaviour
     }
     
     public static event Action<float, Color, VehicleComponent> OnNewSelection;
+    public static event Action FirstSelection;
 
     float totalPrice;
+    bool firstSelection = false;
     Dictionary<VehicleComponent,PriceType3D> selectionDict = new Dictionary<VehicleComponent, PriceType3D>();
     PriceType3D currentSelection = new PriceType3D(0f,VehicleComponent.None,0f,null,Color.clear);
 
@@ -55,6 +57,10 @@ public class MenuSelection : MonoBehaviour
     // Checks to see if existing type exists in dict. If not it adds it. Else it overrites it.
     void OnComponentSelection(float price, float colourPrice, VehicleComponent type, GameObject prefab, Color baseColour)
     {
+        if (firstSelection == false){
+            firstSelection = true;
+            FirstSelection();
+        }
         // If the obj is already in selection.
         if (currentSelection.prefab == prefab){
             return;

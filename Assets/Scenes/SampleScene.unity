@@ -602,7 +602,7 @@ Mesh:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: pb_Mesh24144
+  m_Name: pb_Mesh24122
   serializedVersion: 10
   m_SubMeshes:
   - serializedVersion: 2
@@ -983,6 +983,10 @@ PrefabInstance:
       propertyPath: m_SizeDelta.x
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 4883599271351989972, guid: 6bf3c8c3060e3cc48984559cbb89a5e8, type: 3}
+      propertyPath: isCarMenu
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 7261065394927163255, guid: 6bf3c8c3060e3cc48984559cbb89a5e8, type: 3}
       propertyPath: m_AnchorMax.y
       value: 0
@@ -1116,6 +1120,7 @@ GameObject:
   - component: {fileID: 8754804041467101513}
   - component: {fileID: 8754804041467101519}
   - component: {fileID: 8754804041467101512}
+  - component: {fileID: 8754804041467101520}
   m_Layer: 5
   m_Name: Wheels
   m_TagString: Untagged
@@ -1149,6 +1154,19 @@ MonoBehaviour:
   m_ChildScaleWidth: 0
   m_ChildScaleHeight: 0
   m_ReverseArrangement: 0
+--- !u!114 &8754804041467101520
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8754804041467101514}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4d64725081f94954782245c5033ab01b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  isCarMenu: 0
 --- !u!224 &8754804041535291872
 RectTransform:
   m_ObjectHideFlags: 0
