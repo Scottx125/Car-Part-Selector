@@ -10,12 +10,12 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 5f3c73a06b334084fa0d2df2307ec082, type: 3}
-  m_Name: Citroeen C4 WRC
+  m_Name: Citroeen Xsaara WRC
   m_EditorClassIdentifier: 
-  worldGameObj: {fileID: 8822369287922822335, guid: db504d514b4466b40a1dadff231ca0ff, type: 3}
+  worldGameObj: {fileID: 3698647749858970110, guid: 2d346501a46b7f64c9ace4290106c7c0, type: 3}
   type: 1
-  image: {fileID: 21300000, guid: 02fe15ce5bd19fa4e9534be017d8b265, type: 3}
-  itemName: Citroeen C4 WRC
-  componentPrice: 2000
-  defaultColour: {r: 0.72156864, g: 0.21568629, b: 0.16470589, a: 1}
+  image: {fileID: 21300000, guid: a44c0128e0ec41c4b9fe68f9ccc65c35, type: 3}
+  itemName: Citroeen Xsaara WRC
+  componentPrice: 4000
+  defaultColour: {r: 0.6784314, g: 0.21568629, b: 0.18431373, a: 1}
   colourPrice: 300

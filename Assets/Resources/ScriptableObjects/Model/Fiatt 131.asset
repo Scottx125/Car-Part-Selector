@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5f3c73a06b334084fa0d2df2307ec082, type: 3}
   m_Name: Fiatt 131
   m_EditorClassIdentifier: 
-  worldGameObj: {fileID: 5404457258573965379, guid: 0514ec86fc657924c9e63a3ac3229490, type: 3}
+  worldGameObj: {fileID: 2075463484941710243, guid: 028b7997a8c5e5c41b5632cacbc051ba, type: 3}
   type: 1
   image: {fileID: 21300000, guid: 4b1070683606c07489c9b10187b38b04, type: 3}
   itemName: Fiatt 131

@@ -15,6 +15,8 @@ MonoBehaviour:
   typePriceModList:
   - type: 1
     priceMod: 2
+  - type: 2
+    priceMod: 2
   colour: {r: 1, g: 0, b: 0.104002476, a: 1}
   image: {fileID: 21300000, guid: 567015c9aa58cdd459902dd9e08eef12, type: 3}
   isDefaultColour: 0

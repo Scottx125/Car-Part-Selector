@@ -55,23 +55,30 @@ public class MenuSelection : MonoBehaviour
     // Checks to see if existing type exists in dict. If not it adds it. Else it overrites it.
     void OnComponentSelection(float price, float colourPrice, VehicleComponent type, GameObject prefab, Color baseColour)
     {
-        if (currentSelection.type == type){
-            currentSelection.prefab.GetComponent<Renderer>().material.color = currentSelection.baseColour;
-            ActivateDeactevateObj();
+        // If the obj is already in selection.
+        if (currentSelection.prefab == prefab){
+            return;
         }
 
+        // Handles overriting old object in dict.
         currentSelection.price = price;
         currentSelection.colourPrice = colourPrice;
         currentSelection.type = type;
         currentSelection.prefab = prefab;
         currentSelection.baseColour = baseColour;
-        Debug.Log(type);
 
+        // Check to see if the type exists already. If it does deactivate the old object and overwrite.
+        // If it doens't, add it.
         if (selectionDict.ContainsKey(type)){
+            Debug.Log("test");
+            GetMaterialsAndChangeColour(selectionDict[type].baseColour);
+            ActivateDeactevateObj(selectionDict[type].prefab);
             selectionDict[currentSelection.type] = currentSelection;
         } else {selectionDict.Add(currentSelection.type, currentSelection);}
+        // Activates the new obj.
+        GetMaterialsAndChangeColour(currentSelection.baseColour);
+        ActivateDeactevateObj(currentSelection.prefab);
 
-        ActivateDeactevateObj();
         OnNewSelection(colourPrice, baseColour, currentSelection.type);
         UpdateSelection();
     }
@@ -79,14 +86,21 @@ public class MenuSelection : MonoBehaviour
     void OnColourUpdate(float colourPrice, Color colour)
     {
         currentSelection.colourPrice = colourPrice;
-        currentSelection.prefab.GetComponent<Renderer>().material.color = colour;
+        GetMaterialsAndChangeColour(colour);
         selectionDict[currentSelection.type] = currentSelection;
         UpdateSelection();
     }
 
-    void ActivateDeactevateObj()
+    void GetMaterialsAndChangeColour(Color colour){
+        Renderer[] matInChildren = currentSelection.prefab.GetComponentsInChildren<Renderer>();
+        foreach (Renderer item in matInChildren){
+            item.material.color = colour;
+        }
+    }
+
+    void ActivateDeactevateObj(GameObject obj)
     {
-        currentSelection.prefab.SetActive(!currentSelection.prefab.activeInHierarchy);
+        obj.SetActive(!obj.activeInHierarchy);
     }
 }
 

@@ -4,6 +4,7 @@ using UnityEngine;
 
 public enum VehicleComponent{
     None,
-    Model
+    Model,
+    Wheels
     // Could be later expanded for individual components such as an engine etc.
 }
