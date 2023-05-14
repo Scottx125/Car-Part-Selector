@@ -8,7 +8,7 @@ public class VehicleComponentProperties : ScriptableObject
 {
     public GameObject worldGameObj;
     public VehicleComponent type;
-    public Image image;
+    public Sprite image;
     public string itemName;
     public float componentPrice;
     public Color defaultColour;

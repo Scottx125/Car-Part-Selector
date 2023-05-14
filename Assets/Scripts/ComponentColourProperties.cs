@@ -7,6 +7,7 @@ using System;
 [CreateAssetMenu(fileName = "ComponentColourProperties", menuName = "ScriptableObjects/ComponentColourProperties", order = 2)]
 public class ComponentColourProperties : ScriptableObject
 {   
+
     [Serializable]
     public struct TypePriceMod
     {
@@ -16,5 +17,6 @@ public class ComponentColourProperties : ScriptableObject
 
     public List<TypePriceMod> typePriceModList;
     public Color colour;
-    public Image image;
+    public Sprite image;
+    public bool isDefaultColour;
 }

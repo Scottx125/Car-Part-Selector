@@ -2,9 +2,13 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using System;
+using TMPro;
 
 public class MenuSelection : MonoBehaviour
 {
+    [SerializeField]
+    TextMeshProUGUI tmpPrice;
+
     private struct PriceType3D
     {
         public float price;
@@ -26,7 +30,7 @@ public class MenuSelection : MonoBehaviour
 
     float totalPrice;
     Dictionary<VehicleComponent,PriceType3D> selectionDict;
-    PriceType3D pendingSelection;
+    PriceType3D currentSelection;
 
     void OnEnabled(){
         InventoryAsset.OnComponenetSelectionEvent += OnComponentSelection;
@@ -36,10 +40,6 @@ public class MenuSelection : MonoBehaviour
         InventoryAsset.OnComponenetSelectionEvent -= OnComponentSelection;
         ColourAsset.OnColourUpdateEvent -= OnColourUpdate;
     }
-    void Start()
-    { 
-
-    }
     // Update prices.
     void UpdateSelection()
     {
@@ -48,28 +48,42 @@ public class MenuSelection : MonoBehaviour
             totalPrice += item.price;
             totalPrice += item.colourPrice;
         }
+        tmpPrice.text = "£" + totalPrice;
     }
     // Checks to see if existing type exists in dict. If not it adds it. Else it overrites it.
     void OnComponentSelection(float price, float colourPrice, VehicleComponent type, GameObject prefab, Color baseColour)
     {
-        if (selectionDict.ContainsKey(pendingSelection.type)){
-            selectionDict[pendingSelection.type] = pendingSelection;
-        } else {selectionDict.Add(pendingSelection.type, pendingSelection);}
+        if (currentSelection.type == type){
+            currentSelection.prefab.GetComponent<Material>().color = currentSelection.baseColour;
+            ActivateDeactevateObj();
+        }
 
-        pendingSelection.price = price;
-        pendingSelection.colourPrice = colourPrice;
-        pendingSelection.type = type;
-        pendingSelection.prefab = prefab;
-        pendingSelection.baseColour = baseColour;
-        OnNewSelection(colourPrice, baseColour, pendingSelection.type);
+        currentSelection.price = price;
+        currentSelection.colourPrice = colourPrice;
+        currentSelection.type = type;
+        currentSelection.prefab = prefab;
+        currentSelection.baseColour = baseColour;
+
+        if (selectionDict.ContainsKey(type)){
+            selectionDict[currentSelection.type] = currentSelection;
+        } else {selectionDict.Add(currentSelection.type, currentSelection);}
+
+        ActivateDeactevateObj();
+        OnNewSelection(colourPrice, baseColour, currentSelection.type);
         UpdateSelection();
     }
     // Updates the colour price of the current pending selection.
-    void OnColourUpdate(float colourPrice)
+    void OnColourUpdate(float colourPrice, Color colour)
     {
-        pendingSelection.colourPrice = colourPrice;
-        selectionDict[pendingSelection.type] = pendingSelection;
+        currentSelection.colourPrice = colourPrice;
+        currentSelection.prefab.GetComponent<Material>().color = colour;
+        selectionDict[currentSelection.type] = currentSelection;
         UpdateSelection();
+    }
+
+    void ActivateDeactevateObj()
+    {
+        currentSelection.prefab.SetActive(!currentSelection.prefab.activeInHierarchy);
     }
 }
 

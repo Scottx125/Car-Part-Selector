@@ -28,15 +28,18 @@ public class InventoryAsset : MonoBehaviour
     void Start(){
         price = data.componentPrice;
         colourPrice = data.colourPrice;
-        uiPrice.text = data.componentPrice.ToString();
-        uiImage = data.image;
+        uiPrice.text = "£" + data.componentPrice;
+        uiImage.sprite = data.image;
         uiItemName.text = data.itemName;
         componentType = data.type;
         prefab = data.worldGameObj;
         baseColour = data.defaultColour;
+
+        prefab = Instantiate(prefab);
+        prefab.GetComponent<Material>().color = baseColour;
     }
 
-    void OnClick()
+    public void OnClick()
     {
         OnComponenetSelectionEvent(price, colourPrice, componentType, prefab, baseColour);
     }

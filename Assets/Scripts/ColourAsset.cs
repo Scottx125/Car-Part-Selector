@@ -7,7 +7,7 @@ using System;
 
 public class ColourAsset : MonoBehaviour
 {
-    public static event Action<float> OnColourUpdateEvent;
+    public static event Action<float, Color> OnColourUpdateEvent;
 
     [HideInInspector]
     public ComponentColourProperties data;
@@ -23,19 +23,26 @@ public class ColourAsset : MonoBehaviour
     private VehicleComponent type;
 
     void Start(){
-        //priceMod = data.priceMod;
         colour = data.colour;
-        uiImage = data.image;
+        uiImage.sprite = data.image;
+        uiImage.color = colour;
+        uiPrice.text = "£0";
+    }
+
+    public void DefaultColourUpdate(Color baseColour)
+    {
+        colour = baseColour;
     }
 
     public void UpdateStats(float colourPrice, VehicleComponent type){
         int index = data.typePriceModList.FindIndex(x => x.type == type);
         priceMod = data.typePriceModList[index].priceMod;
         price = colourPrice * priceMod;
+        uiPrice.text = "£" + price;
     }
 
-    void OnClick(){
-        OnColourUpdateEvent(price);
+    public void OnClick(){
+        OnColourUpdateEvent(price, colour);
     }
 
     // Get event for base price of colour. Then update.
