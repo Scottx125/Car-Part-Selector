@@ -19,3 +19,4 @@ MonoBehaviour:
   componentPrice: 3500
   defaultColour: {r: 0.6627451, g: 0.23529413, b: 0.21176472, a: 1}
   colourPrice: 300
+  speed: 80

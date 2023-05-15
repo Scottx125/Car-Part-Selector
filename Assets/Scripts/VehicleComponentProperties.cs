@@ -13,4 +13,5 @@ public class VehicleComponentProperties : ScriptableObject
     public float componentPrice;
     public Color defaultColour;
     public float colourPrice;
+    public float speed;
 }

@@ -8,6 +8,8 @@ public class MenuSelection : MonoBehaviour
 {
     [SerializeField]
     TextMeshProUGUI tmpPrice;
+    [SerializeField]
+    TextMeshProUGUI tmpSpeed;
 
     private struct PriceType3D
     {
@@ -16,13 +18,15 @@ public class MenuSelection : MonoBehaviour
         public float colourPrice;
         public GameObject prefab;
         public Color baseColour;
+        public float speed;
 
-        public PriceType3D(float price, VehicleComponent type, float colourPrice, GameObject prefab, Color baseColour){
+        public PriceType3D(float price, VehicleComponent type, float colourPrice, GameObject prefab, Color baseColour, float speed){
             this.price = price;
             this.type = type;
             this.colourPrice = colourPrice;
             this.prefab = prefab;
             this.baseColour = baseColour;
+            this.speed = speed;
         }
     }
     
@@ -30,9 +34,10 @@ public class MenuSelection : MonoBehaviour
     public static event Action FirstSelection;
 
     float totalPrice;
+    float totalSpeed;
     bool firstSelection = false;
     Dictionary<VehicleComponent,PriceType3D> selectionDict = new Dictionary<VehicleComponent, PriceType3D>();
-    PriceType3D currentSelection = new PriceType3D(0f,VehicleComponent.None,0f,null,Color.clear);
+    PriceType3D currentSelection = new PriceType3D(0f,VehicleComponent.None,0f,null,Color.clear, 0f);
 
     void OnEnable(){
         InventoryAsset.OnComponenetSelectionEvent += OnComponentSelection;
@@ -48,14 +53,17 @@ public class MenuSelection : MonoBehaviour
     void UpdateSelection()
     {
         totalPrice = 0;
+        totalSpeed = 0;
         foreach(PriceType3D item in selectionDict.Values){
             totalPrice += item.price;
             totalPrice += item.colourPrice;
+            totalSpeed += item.speed;
         }
-        tmpPrice.text = "£" + totalPrice;
+        tmpPrice.text = "Cost: £" + totalPrice;
+        tmpSpeed.text = "Speed: " + totalSpeed + " MPH";
     }
     // Checks to see if existing type exists in dict. If not it adds it. Else it overrites it.
-    void OnComponentSelection(float price, float colourPrice, VehicleComponent type, GameObject prefab, Color baseColour)
+    void OnComponentSelection(float price, float colourPrice, VehicleComponent type, GameObject prefab, Color baseColour, float speed)
     {
         if (firstSelection == false){
             firstSelection = true;
@@ -72,6 +80,7 @@ public class MenuSelection : MonoBehaviour
         currentSelection.type = type;
         currentSelection.prefab = prefab;
         currentSelection.baseColour = baseColour;
+        currentSelection.speed = speed;
 
         // Check to see if the type exists already. If it does deactivate the old object and overwrite.
         // If it doens't, add it.

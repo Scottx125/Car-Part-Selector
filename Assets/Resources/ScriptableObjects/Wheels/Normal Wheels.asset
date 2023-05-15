@@ -10,13 +10,13 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 5f3c73a06b334084fa0d2df2307ec082, type: 3}
-  m_Name: Citroeen C4 WRC
+  m_Name: Normal Wheels
   m_EditorClassIdentifier: 
-  worldGameObj: {fileID: 8822369287922822335, guid: db504d514b4466b40a1dadff231ca0ff, type: 3}
-  type: 1
-  image: {fileID: 21300000, guid: 02fe15ce5bd19fa4e9534be017d8b265, type: 3}
-  itemName: Citroeen C4 WRC
-  componentPrice: 2000
-  defaultColour: {r: 0.72156864, g: 0.21568629, b: 0.16470589, a: 1}
-  colourPrice: 300
-  speed: 60
+  worldGameObj: {fileID: 2399885793598383185, guid: 963ae771aa0632c43a9e2d42c0015362, type: 3}
+  type: 2
+  image: {fileID: 21300000, guid: 3168140d6f409d0448447f18568d9482, type: 3}
+  itemName: Normal Wheels
+  componentPrice: 250
+  defaultColour: {r: 0.3018868, g: 0.3018868, b: 0.3018868, a: 0}
+  colourPrice: 100
+  speed: 50

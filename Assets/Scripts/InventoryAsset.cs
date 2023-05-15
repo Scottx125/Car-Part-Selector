@@ -7,7 +7,7 @@ using System;
 
 public class InventoryAsset : MonoBehaviour
 {
-    public static event Action<float, float, VehicleComponent, GameObject, Color> OnComponenetSelectionEvent;
+    public static event Action<float, float, VehicleComponent, GameObject, Color, float> OnComponenetSelectionEvent;
 
     [HideInInspector]
     public VehicleComponentProperties data;
@@ -24,6 +24,7 @@ public class InventoryAsset : MonoBehaviour
     private VehicleComponent componentType;
     private GameObject prefab;
     private Color baseColour;
+    private float speed;
 
     void Start(){
         price = data.componentPrice;
@@ -34,6 +35,7 @@ public class InventoryAsset : MonoBehaviour
         componentType = data.type;
         prefab = data.worldGameObj;
         baseColour = data.defaultColour;
+        speed = data.speed;
 
         prefab = Instantiate(prefab);
         Renderer[] matInChildren = prefab.GetComponentsInChildren<Renderer>();
@@ -45,6 +47,6 @@ public class InventoryAsset : MonoBehaviour
 
     public void OnClick()
     {
-        OnComponenetSelectionEvent(price, colourPrice, componentType, prefab, baseColour);
+        OnComponenetSelectionEvent(price, colourPrice, componentType, prefab, baseColour, speed);
     }
 }
