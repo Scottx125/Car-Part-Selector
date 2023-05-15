@@ -60,7 +60,7 @@ public class MenuSelection : MonoBehaviour
             totalSpeed += item.speed;
         }
         tmpPrice.text = "Cost: £" + totalPrice;
-        tmpSpeed.text = "Speed: " + totalSpeed + " MPH";
+        tmpSpeed.text = "Max Speed: " + totalSpeed + " MPH";
     }
     // Checks to see if existing type exists in dict. If not it adds it. Else it overrites it.
     void OnComponentSelection(float price, float colourPrice, VehicleComponent type, GameObject prefab, Color baseColour, float speed)
@@ -85,7 +85,6 @@ public class MenuSelection : MonoBehaviour
         // Check to see if the type exists already. If it does deactivate the old object and overwrite.
         // If it doens't, add it.
         if (selectionDict.ContainsKey(type)){
-            Debug.Log("test");
             GetMaterialsAndChangeColour(selectionDict[type].baseColour);
             ActivateDeactevateObj(selectionDict[type].prefab);
             selectionDict[currentSelection.type] = currentSelection;
