@@ -6,10 +6,11 @@ using TMPro;
 
 public class MenuSelection : MonoBehaviour
 {
+    public static event Action<float, Color, VehicleComponent> OnNewSelection;
+    public static event Action FirstSelection;
+
     [SerializeField]
-    TextMeshProUGUI tmpPrice;
-    [SerializeField]
-    TextMeshProUGUI tmpSpeed;
+    private TextMeshProUGUI tmpPrice, tmpSpeed;
 
     private struct PriceType3D
     {
@@ -29,28 +30,24 @@ public class MenuSelection : MonoBehaviour
             this.speed = speed;
         }
     }
-    
-    public static event Action<float, Color, VehicleComponent> OnNewSelection;
-    public static event Action FirstSelection;
 
-    float totalPrice;
-    float totalSpeed;
-    bool firstSelection = false;
-    Dictionary<VehicleComponent,PriceType3D> selectionDict = new Dictionary<VehicleComponent, PriceType3D>();
-    PriceType3D currentSelection = new PriceType3D(0f,VehicleComponent.None,0f,null,Color.clear, 0f);
+    private float totalPrice, totalSpeed;
+    private bool firstSelection = false;
+    private Dictionary<VehicleComponent,PriceType3D> selectionDict = new Dictionary<VehicleComponent, PriceType3D>();
+    private PriceType3D currentSelection = new PriceType3D(0f, VehicleComponent.None, 0f, null, Color.clear, 0f);
 
-    void OnEnable(){
+    private void OnEnable(){
         InventoryAsset.OnComponenetSelectionEvent += OnComponentSelection;
         ColourAsset.OnColourUpdateEvent += OnColourUpdate;
     }
 
-    void OnDisable(){
+    private void OnDisable(){
         InventoryAsset.OnComponenetSelectionEvent -= OnComponentSelection;
         ColourAsset.OnColourUpdateEvent -= OnColourUpdate;
     }
 
     // Update prices.
-    void UpdateSelection()
+    private void UpdateSelection()
     {
         totalPrice = 0;
         totalSpeed = 0;
@@ -63,7 +60,7 @@ public class MenuSelection : MonoBehaviour
         tmpSpeed.text = "Max Speed: " + totalSpeed + " MPH";
     }
     // Checks to see if existing type exists in dict. If not it adds it. Else it overrites it.
-    void OnComponentSelection(float price, float colourPrice, VehicleComponent type, GameObject prefab, Color baseColour, float speed)
+    private void OnComponentSelection(float price, float colourPrice, VehicleComponent type, GameObject prefab, Color baseColour, float speed)
     {
         if (firstSelection == false){
             firstSelection = true;
@@ -92,12 +89,12 @@ public class MenuSelection : MonoBehaviour
         // Activates the new obj.
         GetMaterialsAndChangeColour(currentSelection.baseColour);
         ActivateDeactevateObj(currentSelection.prefab);
-
+        
         OnNewSelection(colourPrice, baseColour, currentSelection.type);
         UpdateSelection();
     }
     // Updates the colour price of the current pending selection.
-    void OnColourUpdate(float colourPrice, Color colour)
+    private void OnColourUpdate(float colourPrice, Color colour)
     {
         currentSelection.colourPrice = colourPrice;
         GetMaterialsAndChangeColour(colour);
@@ -105,14 +102,14 @@ public class MenuSelection : MonoBehaviour
         UpdateSelection();
     }
 
-    void GetMaterialsAndChangeColour(Color colour){
+    private void GetMaterialsAndChangeColour(Color colour){
         Renderer[] matInChildren = currentSelection.prefab.GetComponentsInChildren<Renderer>();
         foreach (Renderer item in matInChildren){
             item.material.color = colour;
         }
     }
 
-    void ActivateDeactevateObj(GameObject obj)
+    private void ActivateDeactevateObj(GameObject obj)
     {
         obj.SetActive(!obj.activeInHierarchy);
     }

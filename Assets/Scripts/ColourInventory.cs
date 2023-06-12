@@ -6,47 +6,59 @@ using System;
 public class ColourInventory : MonoBehaviour
 {
     [SerializeField]
-    GameObject colourInventoryGameObj;
+    private GameObject colourInventoryGameObj;
     
-    ComponentColourProperties[] componentColourArray;
-    List<GameObject> colourInventoryGameObjList = new List<GameObject>();
+    private ComponentColourProperties[] componentColourArray;
+    private List<ColourAsset> colourAssetInventory = new List<ColourAsset>();
 
-    void OnEnable(){
+    private void OnEnable(){
         MenuSelection.OnNewSelection += UpdateColourAssets;
     }
-    void OnDisable(){
+    private void OnDisable(){
         MenuSelection.OnNewSelection += UpdateColourAssets;
     }
 
-    void Awake()
-    { 
+    private void Awake()
+    {
+        SetupAssets();
+    }
+
+    private void SetupAssets()
+    {
         // Might need to either force an update OR apply data to object before it's instantiated.
         componentColourArray = Resources.LoadAll<ComponentColourProperties>("ScriptableObjects/Colour");
 
         SortArrayDefaultFirst();
-        foreach (ComponentColourProperties item in componentColourArray){
-                GameObject instance = Instantiate(colourInventoryGameObj, transform);
-                instance.GetComponent<ColourAsset>().data = item;
-                colourInventoryGameObjList.Add(instance);
+        foreach (ComponentColourProperties item in componentColourArray)
+        {
+            GameObject instance = Instantiate(colourInventoryGameObj, transform);
+            ColourAsset asset = instance.GetComponent<ColourAsset>();
+            if (asset == null)
+            {
+                return;
+            }
+            asset.data = item;
+            asset.Setup();
+            colourAssetInventory.Add(asset);
         }
     }
 
-    void SortArrayDefaultFirst()
+    private void SortArrayDefaultFirst()
     {
-        if (!Array.Find(componentColourArray, x => x.isDefaultColour == true)){return;}
+        if (!Array.Find(componentColourArray, x => x.getIsDefaultColour == true)){return;}
         
-        int index = Array.FindIndex(componentColourArray, x => x.isDefaultColour == true);
+        int index = Array.FindIndex(componentColourArray, x => x.getIsDefaultColour == true);
         // Switcharoo to put the default at the start.
         ComponentColourProperties temp = componentColourArray[0];
         componentColourArray[0] = componentColourArray[index];
         componentColourArray[index] = temp;
     }
 
-    void UpdateColourAssets(float colourPrice, Color baseColour, VehicleComponent type){
+    private void UpdateColourAssets(float colourPrice, Color baseColour, VehicleComponent type){
         // Update the first default colour here.
-        colourInventoryGameObjList[0].GetComponent<ColourAsset>().DefaultColourUpdate(baseColour);
-        foreach (GameObject item in colourInventoryGameObjList){
-            item.GetComponent<ColourAsset>().UpdateStats(colourPrice, type);
+        colourAssetInventory[0].DefaultColourUpdate(baseColour);
+        foreach (ColourAsset item in colourAssetInventory){
+            item.UpdateStats(colourPrice, type);
         }
     }
 }

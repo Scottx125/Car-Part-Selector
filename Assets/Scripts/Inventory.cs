@@ -5,20 +5,33 @@ using UnityEngine;
 public class Inventory : MonoBehaviour
 {
     [SerializeField]
-    GameObject inventoryGameObj;
+    private GameObject inventoryGameObj;
     [SerializeField]
-    VehicleComponent type; 
+    private VehicleComponent type; 
     
-    VehicleComponentProperties[] vehiclePropertyArray;
-    List<GameObject> inventoryGameObjList = new List<GameObject>();
+    private VehicleComponentProperties[] vehiclePropertyArray;
+    private List<InventoryAsset> inventoryGameObjList = new List<InventoryAsset>();
 
-    void Awake()
+    private void Awake()
+    {
+        SetupAssets();
+    }
+
+    private void SetupAssets()
     {
         vehiclePropertyArray = Resources.LoadAll<VehicleComponentProperties>("ScriptableObjects/" + type.ToString());
-        foreach (VehicleComponentProperties item in vehiclePropertyArray){
-                GameObject instance = Instantiate(inventoryGameObj, transform);
-                instance.GetComponent<InventoryAsset>().data = item;
-                inventoryGameObjList.Add(instance);
+
+        foreach (VehicleComponentProperties item in vehiclePropertyArray)
+        {
+            GameObject instance = Instantiate(inventoryGameObj, transform);
+            InventoryAsset asset = instance.GetComponent<InventoryAsset>();
+            if (asset == null)
+            {
+                return;
+            }
+            asset.data = item;
+            asset.Setup();
+            inventoryGameObjList.Add(asset);
         }
     }
 }

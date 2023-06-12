@@ -1,5 +1,3 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using TMPro;
 using UnityEngine.UI;
@@ -13,18 +11,18 @@ public class ColourAsset : MonoBehaviour
     public ComponentColourProperties data;
 
     [SerializeField]
-    TextMeshProUGUI uiPrice;
+    private TextMeshProUGUI uiPrice;
     [SerializeField]
-    Image uiImage;
+    private Image uiImage;
 
     private float priceMod;
     private Color colour;
     private float price;
     private VehicleComponent type;
 
-    void Start(){
-        colour = data.colour;
-        uiImage.sprite = data.image;
+    public void Setup(){
+        colour = data.getColour;
+        uiImage.sprite = data.getImage;
         uiImage.color = colour;
         uiPrice.text = "£0";
     }
@@ -36,8 +34,8 @@ public class ColourAsset : MonoBehaviour
     }
 
     public void UpdateStats(float colourPrice, VehicleComponent type){
-        int index = data.typePriceModList.FindIndex(x => x.type == type);
-        priceMod = data.typePriceModList[index].priceMod;
+        int index = data.getTypePriceModList.FindIndex(x => x.getType == type);
+        priceMod = data.getTypePriceModList[index].getPriceMod;
         price = colourPrice * priceMod;
         uiPrice.text = "£" + price;
     }

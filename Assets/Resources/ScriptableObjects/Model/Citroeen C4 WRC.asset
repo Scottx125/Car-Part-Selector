@@ -13,10 +13,10 @@ MonoBehaviour:
   m_Name: Citroeen C4 WRC
   m_EditorClassIdentifier: 
   worldGameObj: {fileID: 8822369287922822335, guid: db504d514b4466b40a1dadff231ca0ff, type: 3}
-  type: 1
+  vehicleCompType: 1
   image: {fileID: 21300000, guid: 02fe15ce5bd19fa4e9534be017d8b265, type: 3}
   itemName: Citroeen C4 WRC
-  componentPrice: 2000
   defaultColour: {r: 0.72156864, g: 0.21568629, b: 0.16470589, a: 1}
   colourPrice: 300
   speed: 60
+  componentPrice: 2000

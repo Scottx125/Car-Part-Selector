@@ -13,10 +13,10 @@ MonoBehaviour:
   m_Name: Normal Wheels
   m_EditorClassIdentifier: 
   worldGameObj: {fileID: 2399885793598383185, guid: 963ae771aa0632c43a9e2d42c0015362, type: 3}
-  type: 2
+  vehicleCompType: 2
   image: {fileID: 21300000, guid: 3168140d6f409d0448447f18568d9482, type: 3}
   itemName: Normal Wheels
-  componentPrice: 250
   defaultColour: {r: 0.3018868, g: 0.3018868, b: 0.3018868, a: 0}
   colourPrice: 100
   speed: 50
+  componentPrice: 250

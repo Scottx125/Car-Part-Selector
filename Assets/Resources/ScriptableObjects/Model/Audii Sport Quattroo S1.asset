@@ -13,10 +13,10 @@ MonoBehaviour:
   m_Name: Audii Sport Quattroo S1
   m_EditorClassIdentifier: 
   worldGameObj: {fileID: 4730228781182059161, guid: 0f3878796c7cdec41b4eeb43851e9d59, type: 3}
-  type: 1
+  vehicleCompType: 1
   image: {fileID: 21300000, guid: 640406d247f7f2640b1a3b803582d0b3, type: 3}
   itemName: Audii Sport Quattroo S1
-  componentPrice: 5000
   defaultColour: {r: 0.77647066, g: 0.8196079, b: 0.8941177, a: 1}
   colourPrice: 300
   speed: 100
+  componentPrice: 5000

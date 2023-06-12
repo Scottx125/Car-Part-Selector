@@ -13,10 +13,10 @@ MonoBehaviour:
   m_Name: Fiatt 131
   m_EditorClassIdentifier: 
   worldGameObj: {fileID: 2075463484941710243, guid: 028b7997a8c5e5c41b5632cacbc051ba, type: 3}
-  type: 1
+  vehicleCompType: 1
   image: {fileID: 21300000, guid: 4b1070683606c07489c9b10187b38b04, type: 3}
   itemName: Fiatt 131
-  componentPrice: 3500
   defaultColour: {r: 0.6627451, g: 0.23529413, b: 0.21176472, a: 1}
   colourPrice: 300
   speed: 80
+  componentPrice: 3500

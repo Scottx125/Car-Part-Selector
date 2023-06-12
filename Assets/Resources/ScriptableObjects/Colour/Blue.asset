@@ -14,9 +14,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   typePriceModList:
   - type: 1
-    priceMod: 2
+    priceMod: 1.5
   - type: 2
-    priceMod: 2
+    priceMod: 1.5
   colour: {r: 0, g: 0.7772784, b: 1, a: 1}
   image: {fileID: 21300000, guid: 567015c9aa58cdd459902dd9e08eef12, type: 3}
   isDefaultColour: 0

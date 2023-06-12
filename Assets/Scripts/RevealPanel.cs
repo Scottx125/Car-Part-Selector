@@ -6,22 +6,14 @@ using UnityEngine.UI;
 public class RevealPanel : MonoBehaviour
 {
     [SerializeField]
-    GameObject parent;
-    [SerializeField]
-    GameObject hiddenPanel;
+    private GameObject parent, hiddenPanel;
 
-    RectTransform parentRect;
-    RectTransform hiddenPanelRect;
-    float hiddenPanelHeight;
-    float parentHeight;
-    float parentHeightOffset;
+    private RectTransform parentRect, hiddenPanelRect;
+    private float hiddenPanelHeight, parentHeight, parentHeightOffset;
 
-    void Awake(){
-        parentRect = parent.GetComponent<RectTransform>();
-        hiddenPanelRect = gameObject.GetComponent<RectTransform>();
-        parentHeight = parentRect.rect.height;
-        parentHeightOffset = parent.GetComponent<VerticalLayoutGroup>().spacing;
-        hiddenPanelHeight = hiddenPanelRect.rect.height;
+    private void Awake()
+    {
+        Setup();
     }
 
     public void OnButtonClick(){
@@ -30,12 +22,21 @@ public class RevealPanel : MonoBehaviour
         } else {SetInactive();}
     }
 
-    void SetActive(){
+    private void Setup()
+    {
+        parentRect = parent.GetComponent<RectTransform>();
+        hiddenPanelRect = gameObject.GetComponent<RectTransform>();
+        parentHeight = parentRect.rect.height;
+        parentHeightOffset = parent.GetComponent<VerticalLayoutGroup>().spacing;
+        hiddenPanelHeight = hiddenPanelRect.rect.height;
+    }
+
+    private void SetActive(){
         hiddenPanel.SetActive(true);
         float combinedHeight = parentHeight + hiddenPanelHeight;
         parentRect.SetSizeWithCurrentAnchors(RectTransform.Axis.Vertical, combinedHeight + parentHeightOffset);
     }
-    void SetInactive(){
+    private void SetInactive(){
         hiddenPanel.SetActive(false);
         parentRect.SetSizeWithCurrentAnchors(RectTransform.Axis.Vertical, parentHeight);
     }

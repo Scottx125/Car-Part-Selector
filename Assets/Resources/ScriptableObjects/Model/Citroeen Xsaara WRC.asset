@@ -13,10 +13,10 @@ MonoBehaviour:
   m_Name: Citroeen Xsaara WRC
   m_EditorClassIdentifier: 
   worldGameObj: {fileID: 3698647749858970110, guid: 2d346501a46b7f64c9ace4290106c7c0, type: 3}
-  type: 1
+  vehicleCompType: 1
   image: {fileID: 21300000, guid: a44c0128e0ec41c4b9fe68f9ccc65c35, type: 3}
   itemName: Citroeen Xsaara WRC
-  componentPrice: 4000
   defaultColour: {r: 0.6784314, g: 0.21568629, b: 0.18431373, a: 1}
   colourPrice: 300
   speed: 90
+  componentPrice: 4000

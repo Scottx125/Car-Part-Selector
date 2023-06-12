@@ -13,29 +13,25 @@ public class InventoryAsset : MonoBehaviour
     public VehicleComponentProperties data;
 
     [SerializeField]
-    TextMeshProUGUI uiPrice;
+    private TextMeshProUGUI uiPrice, uiItemName;
     [SerializeField]
-    TextMeshProUGUI uiItemName;
-    [SerializeField]
-    Image uiImage;
+    private Image uiImage;
 
-    private float price;
-    private float colourPrice;
+    private float price, colourPrice, speed;
     private VehicleComponent componentType;
     private GameObject prefab;
     private Color baseColour;
-    private float speed;
 
-    void Start(){
-        price = data.componentPrice;
-        colourPrice = data.colourPrice;
-        uiPrice.text = "£" + data.componentPrice;
-        uiImage.sprite = data.image;
-        uiItemName.text = data.itemName;
-        componentType = data.type;
-        prefab = data.worldGameObj;
-        baseColour = data.defaultColour;
-        speed = data.speed;
+    public void Setup(){
+        price = data.getComponentPrice;
+        colourPrice = data.getColourPrice;
+        uiPrice.text = "£" + price;
+        uiImage.sprite = data.getImage;
+        uiItemName.text = data.getItemName;
+        componentType = data.getVehicleCompType;
+        prefab = data.getWorldGameObj;
+        baseColour = data.getDefaultColour;
+        speed = data.getSpeed;
 
         prefab = Instantiate(prefab);
         Renderer[] matInChildren = prefab.GetComponentsInChildren<Renderer>();
